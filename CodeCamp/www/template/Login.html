@@ -1,0 +1,33 @@
+<!--login form start-->
+<div class="bar bar-header bar-light">
+    <h1 class="title">Login</h1>
+</div>
+<div class="row row-top" style="text-align:center; margin-top:100px;">
+    <div class="col col-center">
+        <img src="img/logo.png" width="200px;" alt="logo">
+    </div>
+</div>
+<div class="row responsive-sm">
+    <div class="list col col-center" id="logform">
+        <label class="item item-input">
+            <i class="icon ion-person-stalker"></i>
+            <span class="input-label">Username</span>
+            <input type="text" ng-model="user.username">
+        </label>
+        <label class="item item-input">
+            <i class="icon ion-key"></i>
+            <span class="input-label"> Password</span>
+            <input type="password" ng-model="user.password">
+        </label>
+        <div class="padding">
+            <button class="button button-full button-outline button-positive
+         icon-left ion-ios-unlocked-outline" ng-click="signIn(user)">
+                Sign-In
+            </button>
+        </div>
+    </div>
+</div>
+<div class="bar bar-footer bar-positive">
+    <div class="title"><h5>Copyright &#169; 2015 99X Technology &#124; Version 1.0.0</h5></div>
+</div>
+<!--login form end-->
