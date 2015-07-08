@@ -1,25 +1,116 @@
-<!--home page start-->
-<div class="bar bar-header bar-light">
-    <h1 class="title">Home</h1>
-</div>
-<div class="list" id="HomeItm">
-    <a class="item item-thumbnail-left" href="#">
-        <img src="../img/logo.png">
-        <h2>Pretty Hate Machine</h2>
-        <p>Nine Inch Nails</p>
-    </a>
-    <a class="item item-thumbnail-left" href="#">
-        <img src="../img/logo.png">
-        <h2>Pretty Hate Machine</h2>
-        <p>Nine Inch Nails</p>
-    </a>
-    <a class="item item-thumbnail-left" href="#">
-        <img src="../img/logo.png">
-        <h2>Pretty Hate Machine</h2>
-        <p>Nine Inch Nails</p>
-    </a>
-</div>
-<div class="bar bar-footer bar-positive">
-    <div class="title"><h5>Copyright &#169; 2015 99X Technology &#124; Version 1.0.0</h5></div>
-</div>
-<!--home page end-->
+<!--side menu start-->
+<ion-side-menus >
+    <ion-pane ion-side-menu-content>
+        <ion-nav-view name="menuContent">
+            <!--home page start-->
+            <div class="bar bar-header bar-light" >
+                <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
+                <h1 class="title">Home</h1>
+                <button class="button button-icon icon ion-android-camera" ui-sref="Camera"></button>
+            </div>
+            <ion-pane>
+                <ion-content id="HomeItm">
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                    <a class="item item-thumbnail-left" href="#">
+                        <img src="../img/2.png">
+                        <h2>Pretty Hate Machine</h2>
+                        <p>Nine Inch Nails</p>
+                    </a>
+                </ion-content>
+            </ion-pane>
+            <div class="bar bar-footer bar-positive">
+                <div class="title"><h6>Copyright &#169; 2015 99X Technology &#124; Version 1.0.0</h6></div>
+            </div>
+
+            <!--home page end-->
+        </ion-nav-view>
+    </ion-pane>
+
+    <ion-side-menu side="left">
+        <header class="bar bar-header bar-assertive">
+            <h1 class="title">Menu</h1>
+        </header>
+        <ion-content class="has-header">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="text" placeholder="Search">
+                </label>
+            </div>
+            <div class="list">
+                <a class="item item-avatar" href="#">
+                    <img src="img/1.png">
+                    <h2>Nimesh</h2>
+                    <p>Back off, man. I'm a scientist.</p>
+                </a>
+                <a class="item item-avatar" href="#">
+                    <img src="img/1.png">
+                    <h2>Chathuranga</h2>
+                    <p>Back off, man. I'm a scientist.</p>
+                </a>
+                <a class="item item-avatar" href="#">
+                    <img src="img/1.png">
+                    <h2>Venkman</h2>
+                    <p>Back off, man. I'm a scientist.</p>
+                </a>
+                <a class="item item-avatar" href="#">
+                    <img src="img/1.png">
+                    <h2>Smith</h2>
+                    <p>Back off, man. I'm a scientist.</p>
+                </a>
+            </div>
+            <div class="list">
+                <a class="item item-icon-left item-icon-right" ui-sref="Login">
+                    <i class="icon ion-person"></i>
+                    Logout
+                    <i class="icon ion-log-out"></i>
+                </a>
+            </div>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
+<!--side menu end-->

@@ -1,22 +1,19 @@
 <!--gallery start-->
-<div class="bar bar-header">
-    <button class="button button-icon icon ion-navicon"></button>
-    <div class="h1 title">Gallery</div>
-    <button class="button button-icon icon ion-android-arrow-back"></button>
-</div>
-<ion-content>
-    <div class="row responsive-lg list" id="glrImg">
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
-        <div class="col" style="text-align: center;"><img src="img/ionic.png"></div>
+<ion-pane>
+    <ion-header-bar class="bar bar-header">
+        <button class="button button-icon icon ion-android-home" ui-sref="Home" ></button>
+        <h1 class="title">Gallery</h1>
+        <button class="button button-icon icon ion-android-arrow-back"  ui-sref="Camera"></button>
+    </ion-header-bar>
+    <ion-content ng-controller="MyCtrl" ng-init="loadImages()">
+        <div class="row responsive-md">
+            <div class="col col-25" ng-repeat="image in images">
+                <img ng-src="{{image.src}}" width="100%" />
+            </div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer bar-positive">
+        <div class="title"><h6>Copyright &#169; 2015 99X Technology &#124; Version 1.0.0</h6></div>
     </div>
-</ion-content>
-<div class="bar bar-footer bar-positive">
-    <div class="title"><h5>Copyright &#169; 2015 99X Technology &#124; Version 1.0.0</h5></div>
-</div>
+</ion-pane>
 <!--gallery end-->
