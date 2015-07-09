@@ -4,7 +4,7 @@ var app=angular.module('starter', ['ionic'])
     })
  //--------------------------------------Routing code--------------------------------------------
     .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/Login')//Login Default
+    $urlRouterProvider.otherwise('/Home')//Login Default
 
     $stateProvider
         .state('Home', {
@@ -19,15 +19,7 @@ var app=angular.module('starter', ['ionic'])
         templateUrl: 'template/Login.html',
         controller:'loginController'
     })
-        //url to go home page
-    //    .state('sideMenu.Home',{
-    //        url: "/Home",
-    //        views: {
-    //            'menuContent': {
-    //                templateUrl: "template/Home.html"
-    //            }
-    //        }
-    //})
+
         //url to go gallery page
         .state('Gallery',{
             url:'/Gallery',
@@ -39,7 +31,39 @@ var app=angular.module('starter', ['ionic'])
             templateUrl:'template/Camera.html'
     })
 })
+//--------------------
+app.controller('mainInfoFactory', ['$scope', '$http', function($scope,$http) {
+    $http.get("js/UserDetails.json")
+        .success(function (response)
+        {
+            $scope.advices = response;
+        })
+        .error(function(data) {
+            alert("ERROR");
+        });
+}]);
 
+//-------------------------------------event detail load controller-----------------------------------
+app.controller('EventController', ['$scope', '$http', function($scope,$http,$ionicPopup) {
+    $http.get("js/Events.json")
+        .success(function (response)
+        {
+            $scope.event = response;
+        })
+        .error(function(data) {
+            alert("ERROR");
+        });
+
+    $scope.events= function(item) {
+        var msg = item.evname;
+        $ionicPopup.alert({
+            title: msg
+        }).then(function (password) {
+            // You have the password now
+        });
+    }
+
+}]);
 //----------------------------------menu open code-----------------------------------------
   app.controller('MenuController',function($scope, $ionicSideMenuDelegate) {
         $scope.toggleLeft=function () {
@@ -50,41 +74,130 @@ var app=angular.module('starter', ['ionic'])
         }
     })
 //------------------------------------model open code--------------------------------------------
-//app.controller('MainCtrl', function($scope, $ionicModal) {
-//
-//    $ionicModal.fromTemplateUrl('template/UserView.html', function(modal) {
-//        $scope.UserView = modal;
-//    }, {
-//        scope: $scope,
-//        animation: 'slide-in-up'
-//    }).then(function(modal) {
-//        $scope.modal = modal
-//        console.log('clock');
-//    })
-//
-//    $scope.openModal = function() {
-//        $scope.modal.show()
-//    }
-//
-//    $scope.closeModal = function() {
-//        $scope.modal.hide();
-//    };
-//
-//    $scope.$on('$destroy', function() {
-//        $scope.modal.remove();
-//    });
-//})
+app.controller('ModelController', function($scope, $ionicModal) {
 
-app.controller("MyCtrl", function($scope) {
+    $ionicModal.fromTemplateUrl('template/UserView.html', function(modal) {
+        $scope.UserView = modal;
+    }, {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal
+        console.log('clock');
+    })
 
-    $scope.images = [];
-    $scope.loadImages = function() {
-        for(var i = 1; i <9; i++) {
-            $scope.images.push({id: i, src: "img/"+i+".png"});
-        }
+    $scope.openModal = function() {
+        $scope.modal.show()
     }
-});
 
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
+
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
+})
+var namei;
+ app.controller('GalleryCtrl',function($scope, $state) {
+
+          $scope.ename=function(name){
+             namei=name.evname;
+              if(namei != null){
+                 $state.go('Gallery');
+              }
+              else{
+                  namei='Gallery';
+                  $state.go('Gallery');
+              }
+
+          }
+     $scope.clear=function(met){
+         if(met=='back'){
+             namei='';
+             console.log(namei);
+         }
+         if(met=='all'){
+             console.log('all');
+             $state.go('Gallery');
+             $scope.myTitle ='All Event Gallery';
+             $scope.album = [
+                 'img/event/htbr.png',
+                 'img/event/virtusa.jpg',
+                 'img/event/idmart.jpg'
+             ];
+
+         }
+     }
+        $scope.myTitle = namei;
+        if(namei=='Code Camp'){
+            $scope.album = [
+                'img/event/htbr.png'
+            ];
+        }
+         if(namei=='Inversion 15'){
+             $scope.album = [
+                 'img/event/virtusa.jpg'
+             ];
+         }
+         if(namei=='Ideamart'){
+             $scope.album = [
+                 'img/event/idmart.jpg'
+             ];
+         }
+
+        //$scope.initPhotoSwipe = function () {
+        //    $window.Code.photoSwipe('a', '#Gallery');
+        //
+        //    //var myPhotoSwipe = Code.PhotoSwipe.attach( $window.document.querySelectorAll('#Gallery1 a'), { enableMouseWheel: false , enableKeyboard: false } );
+        //}
+
+        //$scope.initPhotoSwipe();
+
+    });
+//-----------------------------speacker detail controller-----------------------------------
+app.controller('SpeakerController',function($scope, $state, $ionicPopup, $http, $ionicModal) {
+    //$scope.image=[
+    //    'img/profiles/kishan.png',
+    //    'img/profiles/kosala.jpg',
+    //    'img/profiles/rashmika.jpg',
+    //    'img/profiles/ruzaik.png',
+    //    'img/profiles/suranga.jpg',
+    //    'img/profiles/tharindra.jpg'
+    //];
+    //
+    //$scope.sName=[
+    //    'kosala',
+    //    'rashmika',
+    //    'ruzaik',
+    //    'suranga',
+    //    'tharindra'
+    //];
+
+    $http.get("js/Developers.json")
+        .success(function (response)
+        {
+            $scope.developers = response;
+        })
+        .error(function(data) {
+            alert("ERROR");
+        });
+
+    $scope.devlop= function(name) {
+        var name=name.name;
+        var image=name.image;
+        var disc=name.desc;
+        var link=name.link;
+        console.log(name);
+        $ionicPopup.alert({
+            title:name
+        }).then(function (password) {
+            // You have the password now
+        });
+    }
+
+
+});
 //--------------------------login form controller code-------------------------------------------
 app.controller('loginController', function($scope, $state, $ionicPopup) {
 
@@ -107,8 +220,17 @@ app.controller('loginController', function($scope, $state, $ionicPopup) {
         //
     };
 })
-
-
+//----------------------------------------user detail view popup code-------------------------
+app.controller('UserController', function($scope, $state, $ionicPopup) {
+    $scope.puser= function(user) {
+        var msg=user.evname;
+        $ionicPopup.alert({
+            title: '<img src="img/1.png" style="width:500px;">'
+        }).then(function (password) {
+            // You have the password now
+        });
+    }
+})
 //----------------------------------------------------------------------------------------------------------
 //.run(function($ionicPlatform) {
 //  $ionicPlatform.ready(function() {

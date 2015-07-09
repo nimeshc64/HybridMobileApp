@@ -3,74 +3,50 @@
     <ion-pane ion-side-menu-content>
         <ion-nav-view name="menuContent">
             <!--home page start-->
-            <div class="bar bar-header bar-light" >
+            <div class="bar bar-header bar-dark" ng-controller="GalleryCtrl" >
                 <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
-                <h1 class="title">Home</h1>
-                <button class="button button-icon icon ion-android-camera" ui-sref="Camera"></button>
+                <h1 class="title" >EVENT</h1>
+                <button class="button button-icon icon ion-android-camera" ng-click="clear('all')"></button>
             </div>
             <ion-pane>
-                <ion-content id="HomeItm">
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
-                    <a class="item item-thumbnail-left" href="#">
-                        <img src="../img/2.png">
-                        <h2>Pretty Hate Machine</h2>
-                        <p>Nine Inch Nails</p>
-                    </a>
+                <ion-content class="row responsive-lg" ng-controller="EventController" >
+                    <div class="row responsive-lg">
+                        <div class="list card col" ng-repeat="item in event">
+
+                                <div class="item">
+                                    <h1 style="text-align: center; background-color:#1abc9c;" ng-model="input.firstName">{{item.evname}}</h1>
+                                </div>
+                                <h3>Event Location</h3>
+                                <div class="item item-image">
+                                    <img ng-src="img/{{item.evimage}}" style="width: 200px;">
+                                </div>
+                                <p>
+                                    <h2 >Event Discription</h2>
+                                    {{item.evdiscription}}
+                                </p>
+                                <p >
+                                    <div ng-controller="ModelController" >
+                                        <button class="button button-small button-outline button-balanced" ng-click="modal.show()">
+                                            Event speaker's Details
+                                        </button>
+                                     </div>
+                                </p>
+                                    <div ng-controller="GalleryCtrl" >
+                                    <button class="button button-small button-outline button-balanced" ng-click="ename(item)">
+                                        Gallery
+                                    </button>
+                                    </div>
+                        </div>
+                    </div>
                 </ion-content>
             </ion-pane>
             <div class="bar bar-footer bar-positive">
                 <div class="title"><h6>Copyright &#169; 2015 99X Technology &#124; Version 1.0.0</h6></div>
             </div>
-
             <!--home page end-->
         </ion-nav-view>
     </ion-pane>
-
-    <ion-side-menu side="left">
+    <ion-side-menu side="left" style="background-color: #ecf0f1;">
         <header class="bar bar-header bar-assertive">
             <h1 class="title">Menu</h1>
         </header>
@@ -81,29 +57,14 @@
                     <input type="text" placeholder="Search">
                 </label>
             </div>
-            <div class="list">
-                <a class="item item-avatar" href="#">
-                    <img src="img/1.png">
-                    <h2>Nimesh</h2>
-                    <p>Back off, man. I'm a scientist.</p>
+            <div class="list" ng-controller="SpeakerController">
+
+                <h4 style="text-align: center;"><b>Developers</b></h4>
+                <a class="item" href="#" ng-repeat="namei in developers" style="text-align: center;" ng-click="devlop(namei)">
+                    <p><h2>{{namei.name}}</h2></p>
                 </a>
-                <a class="item item-avatar" href="#">
-                    <img src="img/1.png">
-                    <h2>Chathuranga</h2>
-                    <p>Back off, man. I'm a scientist.</p>
-                </a>
-                <a class="item item-avatar" href="#">
-                    <img src="img/1.png">
-                    <h2>Venkman</h2>
-                    <p>Back off, man. I'm a scientist.</p>
-                </a>
-                <a class="item item-avatar" href="#">
-                    <img src="img/1.png">
-                    <h2>Smith</h2>
-                    <p>Back off, man. I'm a scientist.</p>
-                </a>
-            </div>
-            <div class="list">
+            <div class="list"><br>
+
                 <a class="item item-icon-left item-icon-right" ui-sref="Login">
                     <i class="icon ion-person"></i>
                     Logout

@@ -1,19 +1,20 @@
 <!--gallery start-->
-<ion-pane>
-    <ion-header-bar class="bar bar-header">
-        <button class="button button-icon icon ion-android-home" ui-sref="Home" ></button>
-        <h1 class="title">Gallery</h1>
-        <button class="button button-icon icon ion-android-arrow-back"  ui-sref="Camera"></button>
+<div ng-controller="GalleryCtrl" style="background-color: #ecf0f1;">
+    <ion-header-bar class="bar bar-header bar-dark" >
+        <button class="button button-icon ion-android-arrow-back" ui-sref="Home" ng-click="clear('back')"></button>
+        <h1 class="title">{{myTitle}}</h1>
+        <button class="button button-icon icon ion-camera" ng-click="toggleLeft()"></button>
     </ion-header-bar>
-    <ion-content ng-controller="MyCtrl" ng-init="loadImages()">
-        <div class="row responsive-md">
-            <div class="col col-25" ng-repeat="image in images">
-                <img ng-src="{{image.src}}" width="100%" />
+    <ion-content>
+
+        <div id="Gallery" >
+            <div ng-repeat="image in album" class="gallery-item">
+                <a href="{{image}}">
+                    <img ng-src="{{image}}" alt="{{image}} {{$index}}" style="width:300px;"/>
+                </a>
             </div>
+
         </div>
     </ion-content>
-    <div class="bar bar-footer bar-positive">
-        <div class="title"><h6>Copyright &#169; 2015 99X Technology &#124; Version 1.0.0</h6></div>
-    </div>
-</ion-pane>
+</div>
 <!--gallery end-->
