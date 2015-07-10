@@ -51,26 +51,25 @@
             <h1 class="title">Menu</h1>
         </header>
         <ion-content class="has-header">
-            <div class="list list-inset">
-                <label class="item item-input">
+            <ion-nav-view>
+            <div ng-controller="instantSearchCtrl">
+                <div class="bar item-input-inset">
+                    <label class="item-input-wrapper">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input type="text" placeholder="Search">
+                    <input type="text" class="search " ng-model="searchString" placeholder="Search" />
                 </label>
-            </div>
-            <div class="list" ng-controller="SpeakerController">
-
-                <h4 style="text-align: center;"><b>Developers</b></h4>
-                <a class="item" href="#" ng-repeat="namei in developers" style="text-align: center;" ng-click="devlop(namei)">
-                    <p><h2>{{namei.name}}</h2></p>
-                </a>
-            <div class="list"><br>
-
-                <a class="item item-icon-left item-icon-right" ui-sref="Login">
-                    <i class="icon ion-person"></i>
+                </div>
+                <div class="list" ng-controller="SpeakerController" >
+                    <a ng-repeat="it in items | searchFor:searchString" class="item" ng-click="devlop(it)">
+                         {{it.title}}
+                    </a>
+                </div>
+            </div><br>
+             <a href="#" class="item item-icon-right" ui-sref="Login">
                     Logout
-                    <i class="icon ion-log-out"></i>
-                </a>
-            </div>
+                 <i class="icon ion-log-out"></i>
+             </a>
+            </ion-nav-view>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>

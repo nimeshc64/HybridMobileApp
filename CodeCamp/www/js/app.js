@@ -4,7 +4,7 @@ var app=angular.module('starter', ['ionic'])
     })
  //--------------------------------------Routing code--------------------------------------------
     .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/Home')//Login Default
+    $urlRouterProvider.otherwise('/Login')//Login Default
 
     $stateProvider
         .state('Home', {
@@ -98,6 +98,7 @@ app.controller('ModelController', function($scope, $ionicModal) {
         $scope.modal.remove();
     });
 })
+//----------------------------gallery controller-------------------------------------
 var namei;
  app.controller('GalleryCtrl',function($scope, $state) {
 
@@ -112,11 +113,11 @@ var namei;
               }
 
           }
-     $scope.clear=function(met){
-         if(met=='back'){
-             namei='';
-             console.log(namei);
-         }
+         $scope.clear=function(met){
+             if(met=='back'){
+                 namei='';
+                 console.log(namei);
+             }
          if(met=='all'){
              console.log('all');
              $state.go('Gallery');
@@ -128,23 +129,23 @@ var namei;
              ];
 
          }
-     }
-        $scope.myTitle = namei;
-        if(namei=='Code Camp'){
-            $scope.album = [
-                'img/event/htbr.png'
-            ];
-        }
-         if(namei=='Inversion 15'){
-             $scope.album = [
-                 'img/event/virtusa.jpg'
-             ];
          }
-         if(namei=='Ideamart'){
-             $scope.album = [
-                 'img/event/idmart.jpg'
-             ];
-         }
+            $scope.myTitle = namei;
+            if(namei=='Code Camp'){
+                $scope.album = [
+                    'img/event/htbr.png'
+                ];
+            }
+             if(namei=='Inversion 15'){
+                 $scope.album = [
+                     'img/event/virtusa.jpg'
+                 ];
+             }
+             if(namei=='Ideamart'){
+                 $scope.album = [
+                     'img/event/idmart.jpg'
+                 ];
+             }
 
         //$scope.initPhotoSwipe = function () {
         //    $window.Code.photoSwipe('a', '#Gallery');
@@ -155,25 +156,33 @@ var namei;
         //$scope.initPhotoSwipe();
 
     });
-//-----------------------------speacker detail controller-----------------------------------
-app.controller('SpeakerController',function($scope, $state, $ionicPopup, $http, $ionicModal) {
-    //$scope.image=[
-    //    'img/profiles/kishan.png',
-    //    'img/profiles/kosala.jpg',
-    //    'img/profiles/rashmika.jpg',
-    //    'img/profiles/ruzaik.png',
-    //    'img/profiles/suranga.jpg',
-    //    'img/profiles/tharindra.jpg'
-    //];
-    //
-    //$scope.sName=[
-    //    'kosala',
-    //    'rashmika',
-    //    'ruzaik',
-    //    'suranga',
-    //    'tharindra'
-    //];
+//----------------------------search controller--------------------------------------------
+app.controller('instantSearchCtrl',function($scope,$http){
+    $http.get('js/data.json').success(function(data, status, headers, config) {
+        $scope.items = data.data;
+    }).error(function(data, status, headers, config) {
+        console.log("No data found..");
+    });
+});
 
+app.filter('searchFor', function(){
+    return function(arr, searchString){
+        if(!searchString){
+            return arr;
+        }
+        var result = [];
+        searchString = searchString.toLowerCase();
+        angular.forEach(arr, function(item){
+            if(item.title.toLowerCase().indexOf(searchString) !== -1){
+                result.push(item);
+            }
+        });
+        return result;
+    };
+});
+
+//-----------------------------speaker detail controller-----------------------------------
+app.controller('SpeakerController',function($scope, $state, $ionicPopup, $http, $ionicModal) {
     $http.get("js/Developers.json")
         .success(function (response)
         {
@@ -184,19 +193,15 @@ app.controller('SpeakerController',function($scope, $state, $ionicPopup, $http, 
         });
 
     $scope.devlop= function(name) {
-        var name=name.name;
-        var image=name.image;
-        var disc=name.desc;
-        var link=name.link;
+        var name=name.title;
         console.log(name);
         $ionicPopup.alert({
+            template:'<h4>You have selected a developer. Press OK to continue</h4>',
             title:name
         }).then(function (password) {
             // You have the password now
         });
     }
-
-
 });
 //--------------------------login form controller code-------------------------------------------
 app.controller('loginController', function($scope, $state, $ionicPopup) {
@@ -231,6 +236,30 @@ app.controller('UserController', function($scope, $state, $ionicPopup) {
         });
     }
 })
+//------------------------------camera controller--------------------------------------
+app.controller("CameraController", function($scope, $cordovaCamera) {
+
+        $scope.takePicture = function() {
+            var options = {
+                quality : 75,
+                destinationType : Camera.DestinationType.DATA_URL,
+                sourceType : Camera.PictureSourceType.CAMERA,
+                allowEdit : true,
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 300,
+                targetHeight: 300,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false
+            };
+
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            }, function(err) {
+                // An error occured. Show a message to the user
+            });
+        }
+
+    });
 //----------------------------------------------------------------------------------------------------------
 //.run(function($ionicPlatform) {
 //  $ionicPlatform.ready(function() {

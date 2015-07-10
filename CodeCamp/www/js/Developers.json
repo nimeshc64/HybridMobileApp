@@ -19,19 +19,19 @@
   },{
   "name" 		      : "Suranga Bandara",
   "disc"	  : "Tech Lead at 99X Technology, Senior Developer, ScrumMaster.",
-  "image"             :"img/profiles/ruzaik.png",
+  "image"             :"img/profiles/suranga.jpg",
   "link"              :" https://lk.linkedin.com/in/surangab"
 },
   {
     "name" 		      : "Tharindra Jayamaha",
     "disc"	  : " QA Lead at 99X Technology, QA Consultant.",
-    "image"           :"img/profiles/suranga.jpg",
+    "image"           :"img/profiles/tharindra.jpg",
     "link"            :" https://lk.linkedin.com/in/tharindraj"
   },
   {
     "name" 		      : "Ruzaik Refai",
     "disc"	  : "Automation Engineer at 99X Technology, Solution Developer.",
-    "image"           :"img/profiles/tharindra.jpg",
+    "image"           :"img/profiles/ruzaik.png",
     "link"            :"https://lk.linkedin.com/in/ruzaik"
   }
 ]
